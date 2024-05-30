@@ -8,5 +8,4 @@ export interface PeliculasModel {
     duracion: number;
     precio: number;
     rating: number;
-
 }
