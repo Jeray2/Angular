@@ -1,0 +1,14 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label>Nombre</label>
+    <input type="text" class="form-control" formControlName="nombre"/>
+
+    <label>Apellido</label>
+    <input type="text" class="form-control" formControlName="apellidos"/>
+
+    <button type="submit">Guardar</button>
+
+    <button type="button" (click)="cambiarNombre()">Cambiar Nombre</button>
+
+    <button type="button" (click)="limpiarFormulario()">Limpiar Formulario</button>
+
+</form>
