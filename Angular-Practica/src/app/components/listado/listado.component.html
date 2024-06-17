@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <h2>Lista de Películas</h2>
+        <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Imagen</th>
+          <th>Fecha de Estreno</th>
+          <th>Duración (min)</th>
+          <th>Precio ($)</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pelicula of peliculas">
+          <td>{{ pelicula.id }}</td>
+          <td>{{ pelicula.nombre }}</td>
+          <td>{{ pelicula.descripcion }}</td>
+          <td>{{ pelicula.categoria }}</td>
+          <td><img [src]="pelicula.imagen" alt="{{ pelicula.nombre }}" width="50"></td>
+          <td>{{ pelicula.fechaEstreno | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ pelicula.duracion }}</td>
+          <td>{{ pelicula.precio | currency }}</td>
+          <td>{{ pelicula.rating }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/editar', pelicula.id]">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
