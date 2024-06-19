@@ -27,9 +27,14 @@
           <td>{{ pelicula.precio | currency }}</td>
           <td>{{ pelicula.rating }}</td>
           <td>
-            <button class="btn btn-primary btn-sm" [routerLink]="['/editar', pelicula.id]">Editar</button>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/Peliculas/Editar', pelicula.id]">Editar</button>
           </td>
         </tr>
       </tbody>
     </table>
+    <div class="mt-4">
+      <button class="btn btn-primary" routerLink="/Peliculas/Agregar">
+        <fa-icon [icon]="faPlus"></fa-icon> Agregar Película
+      </button>
+    </div>
   </div>

@@ -61,6 +61,6 @@ export class FormularioEditarComponent implements OnInit {
     // Lógica para guardar la película (puedes modificar directamente el objeto en el array PELICULAS si es necesario)
     console.log('Pelicula guardada:', this.pelicula);
     // Redirigir a la lista de películas u otra página después de guardar
-    this.router.navigate(['/']);
+    this.router.navigate(['/Peliculas']);
   }
 }

@@ -1,1 +1,73 @@
-<p>formulario-agregar works!</p>
+<div class="container mt-4">
+  <h3 class="bg-primary text-white p-3">Agregar Película</h3>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" required>
+      <div *ngIf="form.controls['nombre'].invalid && form.controls['nombre'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['nombre'].errors?.['required']">El nombre es obligatorio.</div>
+        <div *ngIf="form.controls['nombre'].errors?.['minlength']">El nombre debe tener al menos 2 caracteres.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <textarea class="form-control" id="descripcion" formControlName="descripcion" required></textarea>
+      <div *ngIf="form.controls['descripcion'].invalid && form.controls['descripcion'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['descripcion'].errors?.['required']">La descripción es obligatoria.</div>
+        <div *ngIf="form.controls['descripcion'].errors?.['minlength']">La descripción debe tener al menos 10 caracteres.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="fechaEstreno" class="form-label">Fecha de Estreno</label>
+      <input type="date" class="form-control" id="fechaEstreno" formControlName="fechaEstreno" required>
+      <div *ngIf="form.controls['fechaEstreno'].invalid && form.controls['fechaEstreno'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['fechaEstreno'].errors?.['required']">La fecha de estreno es obligatoria.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="categoria" class="form-label">Categoría</label>
+      <select class="form-control" id="categoria" formControlName="categoria" required>
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+      </select>
+      <div *ngIf="form.controls['categoria'].invalid && form.controls['categoria'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['categoria'].errors?.['required']">La categoría es obligatoria.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="imagen" class="form-label">Imagen</label>
+      <input type="file" class="form-control" id="imagen" (change)="onFileChange($event)">
+    </div>
+    <div class="form-group mb-3">
+      <label for="duracion" class="form-label">Duración (minutos)</label>
+      <input type="number" class="form-control" id="duracion" formControlName="duracion" required>
+      <div *ngIf="form.controls['duracion'].invalid && form.controls['duracion'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['duracion'].errors?.['required']">La duración es obligatoria.</div>
+        <div *ngIf="form.controls['duracion'].errors?.['min']">La duración debe ser mayor a 0.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="precio" class="form-label">Precio ($)</label>
+      <div class="input-group">
+        <input type="number" class="form-control" id="precio" formControlName="precio" required>
+        <span class="input-group-text">$</span>
+      </div>
+      <div *ngIf="form.controls['precio'].invalid && form.controls['precio'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['precio'].errors?.['required']">El precio es obligatorio.</div>
+        <div *ngIf="form.controls['precio'].errors?.['min']">El precio debe ser mayor a 0.</div>
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label for="rating" class="form-label">Rating</label>
+      <input type="number" class="form-control" id="rating" formControlName="rating" required>
+      <div *ngIf="form.controls['rating'].invalid && form.controls['rating'].touched" class="text-danger mt-1">
+        <div *ngIf="form.controls['rating'].errors?.['required']">El rating es obligatorio.</div>
+        <div *ngIf="form.controls['rating'].errors?.['min']">El rating debe ser mayor a 0.</div>
+        <div *ngIf="form.controls['rating'].errors?.['max']">El rating debe ser menor o igual a 5.</div>
+      </div>
+    </div>
+    <div class="mt-5 text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Agregar</button>
+    </div>
+  </form>
+</div>
