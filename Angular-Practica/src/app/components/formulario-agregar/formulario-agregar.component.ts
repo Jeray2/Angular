@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PELICULAS } from '../../models/test/mock-contactos';
 import { FormBuilder, FormGroup,  FormsModule,  ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PeliculasService } from '../../services/peliculas.service';
 
 @Component({
   selector: 'app-formulario-agregar',
@@ -17,7 +18,7 @@ export class FormularioAgregarComponent {
   form : FormGroup = new FormGroup({});
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private service: PeliculasService) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],
@@ -59,8 +60,9 @@ export class FormularioAgregarComponent {
         fechaEstreno: new Date(this.form.value.fechaEstreno)
       };
 
-      PELICULAS.push(nuevaPelicula);
-      console.log('Película agregada:', nuevaPelicula);
+      this.service.agregarPelicula(nuevaPelicula).subscribe(pelicula => {
+        console.log('Película agregada:', pelicula);
+      });
       this.router.navigate(['/Peliculas']);
     }
   }
