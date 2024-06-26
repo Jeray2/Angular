@@ -3,13 +3,15 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { PeliculasServiceInterface } from './services/peliculas.service.interface';
-import { PeliculasService } from './services/peliculas.service';
+import { provideHttpClient } from '@angular/common/http';
+import { PeliculasServiceHttp } from './services/peliculas.service.http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
      provideRouter(routes),
-      { provide : PeliculasServiceInterface, useClass: PeliculasService }
+     provideHttpClient(),
+      { provide : PeliculasServiceInterface, useClass: PeliculasServiceHttp }
   ]
 
 };

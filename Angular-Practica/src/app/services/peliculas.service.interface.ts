@@ -10,6 +10,8 @@ export abstract class PeliculasServiceInterface {
 
   abstract getPeliculas(): Observable<PeliculasModel[]>;
 
+  abstract getPelicula(id: number): Observable<PeliculasModel>;
+
   abstract agregarPelicula(pelicula: PeliculasModel): Observable<PeliculasModel>;
 
   abstract editarPelicula(pelicula: PeliculasModel): Observable<any>;

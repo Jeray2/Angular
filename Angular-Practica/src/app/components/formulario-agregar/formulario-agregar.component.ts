@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { PELICULAS } from '../../models/test/mock-contactos';
 import { FormBuilder, FormGroup,  FormsModule,  ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { PeliculasService } from '../../services/peliculas.service';
+import { PeliculasServiceInterface } from '../../services/peliculas.service.interface';
 
 @Component({
   selector: 'app-formulario-agregar',
@@ -18,7 +18,7 @@ export class FormularioAgregarComponent {
   form : FormGroup = new FormGroup({});
   selectedFile: File | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private service: PeliculasService) {
+  constructor(private fb: FormBuilder, private router: Router, private service: PeliculasServiceInterface) {
     this.form = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       descripcion: ['', [Validators.required, Validators.minLength(10)]],

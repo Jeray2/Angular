@@ -3,9 +3,9 @@ import { PeliculasModel } from '../../models/peliculas.models';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {  faCross, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { PeliculasService } from '../../services/peliculas.service';
+import { faDeleteLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PeliculasServiceInterface } from '../../services/peliculas.service.interface';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listado',
@@ -16,14 +16,31 @@ import { PeliculasServiceInterface } from '../../services/peliculas.service.inte
 })
 export class ListadoComponent implements OnInit {
   faPlus = faPlus;
+  faDelete = faDeleteLeft;
   peliculas: PeliculasModel[] = [];
   peliculaSeleccionada: PeliculasModel | null = null;
 
-  constructor(private router: Router, private peliculasService: PeliculasServiceInterface) {
+  constructor(private router: Router, private peliculasService: PeliculasServiceInterface ) {
   }
 
   editarPelicula(id: number): void {
     this.router.navigate(['/editar', id]);
+  }
+
+  eliminar(id: number): void{
+    swal.fire(
+      '¿Estás seguro?',
+      'Esta acción no puede revertirse',
+      'warning'
+    ).then(respuesta => {
+      if(respuesta.value){
+        this.peliculasService.eliminar(id).subscribe({
+          next : () => {
+            this.peliculas = this.peliculas.filter(pelicula => pelicula.id!== id);
+          }
+        });
+      }
+    });    
   }
 
   ngOnInit(){

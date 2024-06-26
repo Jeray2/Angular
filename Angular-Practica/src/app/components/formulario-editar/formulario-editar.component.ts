@@ -5,6 +5,7 @@ import { Generos } from '../../models/enum/genero.model';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PELICULAS } from '../../models/test/mock-contactos';
+import { PeliculasServiceInterface } from '../../services/peliculas.service.interface';
 
 @Component({
   selector: 'app-formulario-editar',
@@ -31,6 +32,7 @@ export class FormularioEditarComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private service: PeliculasServiceInterface
   ) {}
 
   ngOnInit(): void {
@@ -46,9 +48,11 @@ export class FormularioEditarComponent implements OnInit {
   }
 
   cargarPelicula(id: number): void {
-    const peliculaEncontrada = PELICULAS.find(p => p.id === id);
+    const peliculaEncontrada = this.service.getPelicula(id);
     if (peliculaEncontrada) {
-      this.pelicula = peliculaEncontrada;
+      peliculaEncontrada.subscribe(
+        (pelicula: PeliculasModel) => this.pelicula = pelicula
+      );
     } else {
       // Manejar el caso donde no se encuentra la película
       console.error(`No se encontró la película con ID ${id}`);

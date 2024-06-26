@@ -7,12 +7,18 @@ import { PeliculasServiceInterface } from './peliculas.service.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class PeliculasService implements PeliculasServiceInterface {
+export class PeliculasService extends PeliculasServiceInterface {
 
-  constructor() { }
+  constructor() {
+    super();
+   }
 
   getPeliculas(): Observable<PeliculasModel[]> {
     return of(PELICULAS);
+  }
+
+  getPelicula(id: number): Observable<PeliculasModel> {
+    return of(PELICULAS[id]);
   }
 
   agregarPelicula(pelicula: PeliculasModel): Observable<PeliculasModel> {

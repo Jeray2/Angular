@@ -28,6 +28,9 @@
           <td>{{ pelicula.rating }}</td>
           <td>
             <button class="btn btn-primary btn-sm" [routerLink]="['/Peliculas/Editar', pelicula.id]">Editar</button>
+            <button class="btn btn-danger" (click)="eliminar(pelicula.id)">
+              <fa-icon [icon]="faDelete"></fa-icon> Agregar Película
+            </button>
           </td>
         </tr>
       </tbody>
@@ -36,5 +39,7 @@
       <button class="btn btn-primary" routerLink="/Peliculas/Agregar">
         <fa-icon [icon]="faPlus"></fa-icon> Agregar Película
       </button>
+
+
     </div>
   </div>
