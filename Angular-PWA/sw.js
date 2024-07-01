@@ -1,11 +1,55 @@
-self.addEventListener("install", ()=>{
-    console.log("Service worker installed")
+
+const cache_name = 'cache-v1';
+//Este evento se dispara cuando el service worker se instala
+//Se ejecuta primero
+//Guarda en cache los archivos estáticos
+self.addEventListener('install', function (event) {
+
+    console.log('SW - Service worker installing...');
+
+    event.waitUntil(
+        self.caches.open(cache_name).then(function (cache) {
+            return cache.addAll(['index_con_sw.html']) 
+        }));
+
+    //LLamo al skipWaiting para que el service worker se active inmediatamente
+    self.skipWaiting();
+
 });
 
-self.addEventListener("activate", ()=>{
-    console.log("Service worker activated")
+//Este evento se dispara cuando el service worker se activa
+//Se ejecuta segundo
+//Le dice al SW que tome control de la página inmediatamente
+self.addEventListener('activate', function (event) {
+    console.log('SW - Service worker activating...');
+
+    // Le dice al SW que tome control de la página inmediatamente
+    self.clients.claim();
 });
 
-self.addEventListener("fetch", ()=>{
-    console.log("Service worker fetched")
+self.addEventListener('fetch', function (event) {
+    console.log('SW - Fetching:', event.request.url);
+
+    if (!navigator.onLine 
+        &&  event.request.url.includes('/api/datos') 
+        && event.request.method === 'GET') {
+
+        let body = {
+            "personas": [{
+                "id": 100,
+                "nombre": "Desde",
+                "apellido": "Service Worker",
+                "edad": 2500
+            }]
+        };       
+        let respuesta = new Response(JSON.stringify(body), { headers: {
+
+                'Content-Type': 'application/json'
+            }
+        });
+
+        //El respondWith se encarga de devolver una respuesta al navegador
+        event.respondWith(respuesta);
+    }
+
 });
