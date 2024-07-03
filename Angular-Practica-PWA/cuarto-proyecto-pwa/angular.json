@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular-Practica": {
+    "cuarto-proyecto-pwa": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/angular-practica",
+            "outputPath": "dist/cuarto-proyecto-pwa",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -27,8 +27,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -61,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Angular-Practica:build:production"
+              "buildTarget": "cuarto-proyecto-pwa:build:production"
             },
             "development": {
-              "buildTarget": "Angular-Practica:build:development"
+              "buildTarget": "cuarto-proyecto-pwa:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,8 +86,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css"
             ],
             "scripts": []
           }

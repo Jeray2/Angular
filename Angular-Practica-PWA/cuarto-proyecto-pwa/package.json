@@ -1,5 +1,5 @@
 {
-  "name": "angular-practica",
+  "name": "cuarto-proyecto-pwa",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -18,13 +18,8 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
-    "@angular/service-worker": "^18.0.1",
-    "@fortawesome/angular-fontawesome": "^0.15.0",
-    "@fortawesome/fontawesome-free": "^6.5.2",
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
-    "bootstrap": "^5.3.3",
+    "@angular/service-worker": "^18.0.0",
     "rxjs": "~7.8.0",
-    "sweetalert2": "^11.12.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

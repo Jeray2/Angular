@@ -1,0 +1,26 @@
+/* Ejemplo de estilos personalizados */
+.navbar {
+    background-color: #343a40 !important;
+  }
+  
+  .navbar-brand, .nav-link {
+    color: #ffffff !important;
+  }
+  
+  .nav-link:hover {
+    color: #d3d3d3 !important;
+  }
+  
+  .form-control {
+    border-radius: 0.25rem;
+  }
+  
+  .btn-outline-success {
+    color: #ffffff;
+    border-color: #28a745;
+  }
+  
+  .btn-outline-success:hover {
+    background-color: #28a745;
+    border-color: #28a745;
+  }

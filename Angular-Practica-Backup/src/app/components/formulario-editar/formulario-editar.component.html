@@ -1,0 +1,41 @@
+<!-- src/app/formulario-editar/formulario-editar.component.html -->
+<div class="container mt-4">
+    <h2>Editar Película</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="pelicula.nombre" name="nombre">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" class="form-control" id="descripcion" [(ngModel)]="pelicula.descripcion" name="descripcion">
+      </div>
+      <div class="mb-3">
+        <label for="categoria" class="form-label">Categoría</label>
+        <select class="form-control" id="categoria" [(ngModel)]="pelicula.categoria" name="categoria">
+          <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="imagen" class="form-label">Imagen URL</label>
+        <input type="text" class="form-control" id="imagen" [(ngModel)]="pelicula.imagen" name="imagen">
+      </div>
+      <div class="mb-3">
+        <label for="fechaEstreno" class="form-label">Fecha de Estreno</label>
+        <input type="date" class="form-control" id="fechaEstreno" [(ngModel)]="pelicula.fechaEstreno" name="fechaEstreno">
+      </div>
+      <div class="mb-3">
+        <label for="duracion" class="form-label">Duración (min)</label>
+        <input type="number" class="form-control" id="duracion" [(ngModel)]="pelicula.duracion" name="duracion">
+      </div>
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio ($)</label>
+        <input type="number" class="form-control" id="precio" [(ngModel)]="pelicula.precio" name="precio">
+      </div>
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <input type="number" class="form-control" id="rating" [(ngModel)]="pelicula.rating" name="rating" step="0.1">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+  </div>
